@@ -14,9 +14,14 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('../public/stylesheets/'));
 });
 
+gulp.task('js', function() {
+  return gulp.src('./js/*.js')
+    .pipe(gulp.dest('../public/js'));
+});
 
 gulp.task('watch', function() {
   gulp.watch('./sass/*.**', ['sass']);
+  gulp.watch('./js/*.**', ['js']);
 });
 
-gulp.task('default', ['sass', 'watch']);
+gulp.task('default', ['sass', 'js', 'watch']);
