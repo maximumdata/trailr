@@ -2,14 +2,14 @@ var videoLoaded = false, infoLoaded = false;
 
 // start by inserting the api script
 var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
+tag.src = "http://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('ytplayer', {
-    videoId: 'LjLamj-b0I8',
+    videoId: 'KNmk4uTZ6vI',
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
