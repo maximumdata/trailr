@@ -93,7 +93,7 @@ function startLoading(clickedElement) {
     $('.output .title').text(data.Title + ' ('+data.Year+')');
     $('.output .desc').text(data.Plot);
     $('.output .meta .genre').text(data.Genre);
-    $('.output .meta .rating').text('Rating: '+ data.imdbRating + ' with ' + data.imdbVotes + ' votes');
+    $('.output .meta .rating').text('IMDB Rating: '+ data.imdbRating);
     finishLoading();
   });
 
