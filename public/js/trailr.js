@@ -91,7 +91,6 @@ function getMovie(name) {
 function startLoading(clickedElement) {
   videoLoaded = false;
   infoLoaded = false;
-  event.preventDefault();
   $('#loading').fadeIn('fast').css({'display': 'flex'});
   var result = getMovie(clickedElement.text());
   player.cueVideoById(result.youtube, 0, 'large');
