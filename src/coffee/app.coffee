@@ -1,5 +1,6 @@
 videoLoaded = false
 infoLoaded = false
+player = {}
 
 # insert youtube api script
 tag = document.createElement('script')
@@ -9,7 +10,6 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
 
 # set up the player element, and connect it up with the API
 # also create event listeners for the new player
-player = null
 
 onYouTubeIframeAPIReady = ->
   player = new YT.Player('ytplayer', {

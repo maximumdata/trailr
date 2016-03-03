@@ -4,7 +4,11 @@ body {
 
 h1 {
   text-align: center;
-  color: #1985A1; }
+  color: #1985A1;
+  margin: 0; }
+  @media screen and (max-width: 767px) {
+    h1 {
+      text-align: right; } }
 
 .hidden {
   display: none; }
@@ -27,11 +31,34 @@ h1 {
     font-weight: bold;
     background: #C5C3C6; }
 
+.offCanvas {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -101vw;
+  width: 100vw;
+  z-index: 100;
+  background: #3a3c3f; }
+  @media screen and (max-width: 767px) {
+    .offCanvas {
+      display: block; } }
+
+.burg {
+  z-index: 101; }
+
 .output {
   position: relative; }
   @media screen and (max-width: 767px) {
     .output {
       text-align: center; } }
+  .output .meta {
+    font-size: .75em;
+    text-align: left; }
+    .output .meta .genre, .output .meta .rating {
+      display: inline-block; }
+    .output .meta .rating {
+      float: right; }
   .output #loading {
     position: absolute;
     top: 0;

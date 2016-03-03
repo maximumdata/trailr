@@ -75,6 +75,7 @@ var movies = [
 
 
 $(document).ready(function() {
+  $('.offCanvas').html($('.mainNav').html());
   $('.navLink').click(function(event) {
     startLoading($(this));
   });
@@ -98,7 +99,10 @@ function startLoading(clickedElement) {
     infoLoaded = true;
     $('.output .title').text(data.Title + ' ('+data.Year+')');
     $('.output .desc').text(data.Plot);
+    $('.output .meta .genre').text(data.Genre);
+    $('.output .meta .rating').text('Rating: '+ data.imdbRating + ' with ' + data.imdbVotes + ' votes');
     finishLoading();
+    console.log(data);
   });
 
 }
@@ -115,5 +119,19 @@ $.fn.extend({
     $(this).addClass('animated ' + animationName).one(animationEnd, function() {
       $(this).removeClass('animated ' + animationName);
     });
+  }
+});
+
+$('.burg').click(function(event) {
+  var offCanMenu = $('.offCanvas');
+  if(offCanMenu.hasClass('out')) {
+    offCanMenu.animate({'left' : '-101vw'}, function(){
+      $(this).removeClass('out');
+    });
+  } else {
+    offCanMenu.animate({'left' : 0}, function(){
+      $(this).addClass('out');
+    });
+
   }
 });

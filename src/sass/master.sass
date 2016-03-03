@@ -9,7 +9,9 @@ body
 h1
   text-align: center
   color: $highlight
-
+  margin: 0
+  @media screen and (max-width: 767px)
+    text-align: right
 .hidden
   display: none
 
@@ -30,10 +32,32 @@ h1
       font-weight: bold
       background: $mainLight
 
+.offCanvas
+  display: none
+  @media screen and (max-width: 767px)
+    display: block
+  position: absolute
+  top: 0
+  bottom: 0
+  left: -101vw
+  width: 100vw
+  z-index: 100
+  background: darken($mainDark, 5)
+.burg
+  z-index: 101
+
 .output
   position: relative
   @media screen and (max-width: 767px)
     text-align: center
+  .meta
+    font-size: .75em
+    text-align: left
+    .genre, .rating
+      display: inline-block
+    .rating
+      float: right
+
   #loading
     position: absolute
     top: 0
