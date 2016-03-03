@@ -1,45 +1,7 @@
-var videoLoaded = false, infoLoaded = false;
-
-// start by inserting the api script
-var tag = document.createElement('script');
-tag.src = "http://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('ytplayer', {
-    videoId: 'KNmk4uTZ6vI',
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
-  });
-}
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-  //event.target.playVideo();
-  console.log('player is ready');
-  startLoading($('.navLink').first());
-}
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-function onPlayerStateChange(event) {
-  if(event.data == 5) {
-    videoLoaded = true;
-    finishLoading();
-  }
-}
-
-function stopVideo() {
-  player.stopVideo();
-}
-
-
-
+/*******************************
+**      GLOBAL VARIABLES      **
+*******************************/
+var videoLoaded = false, infoLoaded = false, player;
 var movies = [
   {
     name: 'Godzilla',
@@ -74,13 +36,44 @@ var movies = [
 ];
 
 
-$(document).ready(function() {
-  $('.offCanvas').html($('.mainNav').html());
-  $('.navLink').click(function(event) {
-    startLoading($(this));
-  });
-});
 
+
+/*******************************
+**      INITIALIZE YT API     **
+*******************************/
+var tag = document.createElement('script');
+tag.src = "http://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('ytplayer', {
+    videoId: 'KNmk4uTZ6vI',
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+// Event handlers for the player
+function onPlayerReady(event) {
+  startLoading($('.navLink').first());
+}
+
+function onPlayerStateChange(event) {
+  if(event.data == 5) {
+    videoLoaded = true;
+    finishLoading();
+  }
+}
+
+
+
+
+/*******************************
+**      APPLICATION LOGIC     **
+*******************************/
 function getMovie(name) {
   for(var i = 0; i < movies.length; i++) {
     if(movies[i].name == name) {
@@ -102,7 +95,6 @@ function startLoading(clickedElement) {
     $('.output .meta .genre').text(data.Genre);
     $('.output .meta .rating').text('Rating: '+ data.imdbRating + ' with ' + data.imdbVotes + ' votes');
     finishLoading();
-    console.log(data);
   });
 
 }
@@ -113,25 +105,33 @@ function finishLoading() {
   }
 }
 
-$.fn.extend({
-  animateCss: function (animationName) {
-    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-    $(this).addClass('animated ' + animationName).one(animationEnd, function() {
-      $(this).removeClass('animated ' + animationName);
-    });
-  }
-});
 
-$('.burg').click(function(event) {
-  var offCanMenu = $('.offCanvas');
-  if(offCanMenu.hasClass('out')) {
-    offCanMenu.animate({'left' : '-101vw'}, function(){
-      $(this).removeClass('out');
-    });
-  } else {
-    offCanMenu.animate({'left' : 0}, function(){
-      $(this).addClass('out');
-    });
 
-  }
+/*******************************
+**   CLICK HANDLERS & MISC    **
+*******************************/
+$(document).ready(function() {
+  $('.offCanvas').html($('.mainNav').html());
+
+  $('.navLink').click(function(event) {
+    if($(this).parent().hasClass('offCanvas')) {
+      $('.burg').click();
+    }
+    startLoading($(this));
+  });
+
+  $('.burg').click(function(event) {
+    var offCanMenu = $('.offCanvas');
+    if(offCanMenu.hasClass('out')) {
+      $('.burg').removeClass('open');
+      offCanMenu.animate({'left' : '-101vw'}, function(){
+        $(this).removeClass('out');
+      });
+    } else {
+      $('.burg').addClass('open');
+      offCanMenu.animate({'left' : 0}, function(){
+        $(this).addClass('out');
+      });
+    }
+  });
 });
