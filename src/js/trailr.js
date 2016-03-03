@@ -9,9 +9,9 @@ var movies = [
     imdb: 'tt0047034'
   },
   {
-    name: 'Ju-On',
-    youtube: 'e8R1dODSbzU',
-    imdb: 'tt0364385'
+    name: 'The Ring',
+    youtube: '_PkgRhzq_BQ',
+    imdb: 'tt0298130'
   },
   {
     name: 'Moon',
