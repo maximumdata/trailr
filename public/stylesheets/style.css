@@ -158,3 +158,10 @@ h1 {
         -ms-flex-pack: center;
             justify-content: center;
     font-size: 3em; }
+
+footer {
+  background-color: #46494c;
+  color: #C5C3C6;
+  margin: 20px 0 0; }
+  footer .info {
+    padding: 20px 0; }
